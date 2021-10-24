@@ -41,5 +41,20 @@ public class CountryService {
 	public void addCountry(Country country) {
 		repository.save(country);
 	}
+	
+	//HandsOn 1-8
+	@Transactional
+	public void updateCountry(Country country) {
+		Country outdatedCountry = repository.findById(country.getCode()).get();
+		outdatedCountry.setName(country.getName());
+		Country updatedCountry = outdatedCountry;
+		repository.save(updatedCountry);
+	}
+	
+	//HandsOn 1-9
+	@Transactional
+	public void deleteCountry(String code) {
+		repository.deleteById(code);
+	}
 
 }
